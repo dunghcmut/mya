@@ -1,6 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from restaurant import views
+
+router = DefaultRouter()
+router.register(r"tables", views.BookingViewSet)
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path("restaurant/booking/", include(router.urls)),
 ]
