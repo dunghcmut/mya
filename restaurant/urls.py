@@ -1,10 +1,10 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from restaurant import views
-
-router = DefaultRouter()
-router.register(r"tables", views.BookingViewSet)
+from django.urls import path,include
+from . import views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
-    path("restaurant/booking/", include(router.urls)),
+    path("menu-items/", views.MenuView.as_view()),
+    path("menu-items/<int:pk>", views.MenuSingleView.as_view()),
+    path("auth/", include("djoser.urls")),
+    path("auth/", include("djoser.urls.authtoken")),
 ]
